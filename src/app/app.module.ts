@@ -28,6 +28,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
+import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.compo
     LancamentoCadastroComponent,
     PessoaPesquisaComponent,
     LancamentoPesquisaComponent,
-    LancamentoGridComponent
+    LancamentoGridComponent,
+    PassoaGridComponent
   ],
   imports: [
     BrowserModule,
