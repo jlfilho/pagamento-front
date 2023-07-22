@@ -8,6 +8,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 
@@ -23,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
+import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,8 @@ import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pe
     NavbarComponent,
     LancamentoCadastroComponent,
     PessoaPesquisaComponent,
-    LancamentoPesquisaComponent
+    LancamentoPesquisaComponent,
+    LancamentoGridComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,10 @@ import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pe
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
