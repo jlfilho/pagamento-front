@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -12,27 +11,21 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { PessoasModule } from './pessoas/pessoas.module';
+
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
+import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent
+    PessoaCadastroComponent,
+    PessoaPesquisaComponent,
+    PassoaGridComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
+    CommonModule,
 
-    LancamentosModule,
-    PessoasModule,
-
-    MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
@@ -43,7 +36,9 @@ import { PessoasModule } from './pessoas/pessoas.module';
     MatPaginatorModule,
     MatTooltipModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    PessoaCadastroComponent,
+    PessoaPesquisaComponent
+  ]
 })
-export class AppModule { }
+export class PessoasModule { }
