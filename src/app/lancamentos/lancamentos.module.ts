@@ -15,6 +15,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
 import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.compo
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
