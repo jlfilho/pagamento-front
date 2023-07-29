@@ -12,6 +12,11 @@ export interface Pessoa {
   styleUrls: ['./lancamento-cadastro.component.css']
 })
 export class LancamentoCadastroComponent {
+  public tipos = [
+    {label: 'Receita', value: "RECEITA"},
+    {label: 'Despesa', value: "DESPESA"}
+  ];
+
   public categorias = [
     { label: 'Alimentação', value: 1 },
     { label: 'Transporte', value: 2 },
