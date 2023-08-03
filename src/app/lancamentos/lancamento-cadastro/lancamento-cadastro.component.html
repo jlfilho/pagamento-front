@@ -59,7 +59,7 @@
 
       <mat-form-field appearance="outline" class="vinte-cinco-per-width">
         <mat-label>Valor</mat-label>
-        <input name="valor" ngModel #valor="ngModel" matInput placeholder="Informe o valor" required>
+        <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="valor" ngModel #valor="ngModel" matInput placeholder="Informe o valor" required>
 
         <mat-error *ngIf="valor.invalid && (valor.dirty || valor.touched)">
           <span *ngIf="valor.errors?.['required']">
@@ -115,9 +115,9 @@
 
 
     <div class="btn">
-      <button mat-raised-button color="primary">Salvar</button>
+      <button [disabled]="lanCadastroForm.invalid" mat-raised-button color="primary" (click)="salvar(lanCadastroForm)">Salvar</button>
       <button mat-raised-button >Novo</button>
-      <button mat-raised-button >Voltar</button>
+      <button mat-raised-button routerLink="">Voltar</button>
     </div>
 
   </form>
