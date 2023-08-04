@@ -5,6 +5,9 @@ import { LancamentoFiltro } from 'src/app/shared/model/lancamentoFiltro.model';
 import { ResponsePageable } from 'src/app/shared/model/responsePageable.model';
 import { LancamentoService } from '../lancamento.service';
 import { SharedService } from 'src/app/shared/shared.service';
+import { Lancamento } from 'src/app/shared/model/lancamento.model';
+import { MensagemDialogoComponent } from 'src/app/shared/components/mensagem-dialogo/mensagem-dialogo.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lancamento-grid',
@@ -19,7 +22,8 @@ export class LancamentoGridComponent implements AfterViewInit{
 
   constructor(
     private lancamentoService: LancamentoService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    public dialog: MatDialog
   ){}
 
   @ViewChild(MatPaginator)
@@ -28,6 +32,23 @@ export class LancamentoGridComponent implements AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource!.paginator = this.paginator;
   }
+
+
+  public confirmarExclusao(lancamento: Lancamento, codigo: number): void {
+    const dialogRef =this.dialog.open(MensagemDialogoComponent, {
+      width: '600px',
+      data: {
+        mensagem: `Tem certeza que deseja excluír o lançamento de ${lancamento.pessoa}`
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==="confirmado"){
+        this.excluir(codigo);
+      }
+    });
+   }
+
 
   excluir(codigo: number) {
     console.log(codigo)
