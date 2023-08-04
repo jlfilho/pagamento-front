@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatSortModule } from '@angular/material/sort';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -44,6 +45,7 @@ import { LancamentoService } from './lancamento.service';
     MatTooltipModule,
     MatButtonToggleModule,
     HttpClientModule,
+    MatSortModule,
 
     CurrencyMaskModule
 

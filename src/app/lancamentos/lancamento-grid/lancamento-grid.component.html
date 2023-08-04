@@ -1,5 +1,5 @@
 <section class="flex-container">
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tbl">
+  <table matSort mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 tbl">
 
     <!-- Pessoa Column -->
     <ng-container matColumnDef="pessoa">
@@ -10,25 +10,25 @@
 
     <!-- Descrição Column -->
     <ng-container matColumnDef="descricao">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </th>
+      <th mat-sort-header mat-header-cell *matHeaderCellDef> Descrição </th>
       <td mat-cell *matCellDef="let lancamento"> {{lancamento.descricao}} </td>
     </ng-container>
 
     <!-- Vencimento Column -->
     <ng-container matColumnDef="dataVencimento">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vencimento </th>
+      <th mat-header-cell *matHeaderCellDef > Vencimento </th>
       <td mat-cell *matCellDef="let lancamento"> {{lancamento.dataVencimento | date: "dd/MM/y"}} </td>
     </ng-container>
 
     <!-- Pagamento Column -->
     <ng-container matColumnDef="dataPagamento">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pagamento </th>
+      <th mat-header-cell *matHeaderCellDef > Pagamento </th>
       <td mat-cell *matCellDef="let lancamento"> {{lancamento.dataPagamento | date: "dd/MM/y"}} </td>
     </ng-container>
 
     <!-- Valor Column -->
     <ng-container matColumnDef="valor">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
+      <th mat-header-cell *matHeaderCellDef > Valor </th>
       <td mat-cell *matCellDef="let lancamento"> <span [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}"> {{lancamento.valor | currency: 'BRL'}} </span> </td>
     </ng-container>
 

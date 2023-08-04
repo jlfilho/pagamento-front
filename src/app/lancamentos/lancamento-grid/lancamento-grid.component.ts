@@ -8,6 +8,7 @@ import { SharedService } from 'src/app/shared/shared.service';
 import { Lancamento } from 'src/app/shared/model/lancamento.model';
 import { MensagemDialogoComponent } from 'src/app/shared/components/mensagem-dialogo/mensagem-dialogo.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-lancamento-grid',
@@ -29,8 +30,11 @@ export class LancamentoGridComponent implements AfterViewInit{
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   ngAfterViewInit(): void {
     this.dataSource!.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 
