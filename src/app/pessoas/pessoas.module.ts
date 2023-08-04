@@ -15,6 +15,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PessoaService } from './pessoa.service';
 
 
 @NgModule({
@@ -34,11 +36,13 @@ import { PassoaGridComponent } from './passoa-grid/passoa-grid.component';
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule
   ],
   exports: [
     PessoaCadastroComponent,
     PessoaPesquisaComponent
-  ]
+  ],
+  providers: [PessoaService]
 })
 export class PessoasModule { }

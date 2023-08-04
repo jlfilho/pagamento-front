@@ -4,7 +4,7 @@
   <form class="form" #lanCadastroForm="ngForm">
 
     <div class="tipos-lancamento" >
-      <mat-button-toggle-group  ngModel name="tipoLancamento" #tipoLancamento="ngModel" required>
+      <mat-button-toggle-group  [(ngModel)]="lancamento.tipo" name="tipoLancamento" #tipoLancamento="ngModel" required>
         <mat-button-toggle *ngFor="let tipo of tipos" [value]="tipo.value" >
           {{ tipo.label }}
         </mat-button-toggle>
@@ -20,7 +20,7 @@
     <div class="flex-filds-container">
       <mat-form-field appearance="outline" class="cinquenta-per-width">
         <mat-label>Vencimento</mat-label>
-        <input name="vencimento" ngModel #vencimento="ngModel" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker" required>
+        <input name="vencimento" [(ngModel)]="lancamento.dataVencimento" #vencimento="ngModel" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker" required>
         <mat-datepicker-toggle matIconSuffix [for]="picker">
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -35,7 +35,7 @@
 
       <mat-form-field appearance="outline" class="cinquenta-per-width">
         <mat-label>Pagamento</mat-label>
-        <input matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker">
+        <input [(ngModel)]="lancamento.dataPagamento" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker">
         <mat-datepicker-toggle matIconSuffix [for]="picker">
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -45,7 +45,7 @@
     <div class="flex-filds-container">
       <mat-form-field appearance="outline" class="set-cinco-per-width">
         <mat-label>Descrição</mat-label>
-        <input name="descricao" ngModel #descricao="ngModel" matInput placeholder="Informe a descrição" required minlength="5">
+        <input [(ngModel)]="lancamento.descricao" name="descricao" #descricao="ngModel" matInput placeholder="Informe a descrição" required minlength="5">
 
         <mat-error *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
           <span *ngIf="descricao.errors?.['required']">
@@ -59,7 +59,7 @@
 
       <mat-form-field appearance="outline" class="vinte-cinco-per-width">
         <mat-label>Valor</mat-label>
-        <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="valor" ngModel #valor="ngModel" matInput placeholder="Informe o valor" required>
+        <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="valor" [(ngModel)]="lancamento.valor" #valor="ngModel" matInput placeholder="Informe o valor" required>
 
         <mat-error *ngIf="valor.invalid && (valor.dirty || valor.touched)">
           <span *ngIf="valor.errors?.['required']">
@@ -74,9 +74,9 @@
     <div class="flex-filds-container">
       <mat-form-field appearance="outline" class="vinte-cinco-per-width">
         <mat-label>Categoria</mat-label>
-        <mat-select name="categoria" ngModel #categoria="ngModel" required>
-          <mat-option *ngFor="let c of categorias" [value]="c.value">
-            {{ c.label }}
+        <mat-select name="categoria" [(ngModel)]="lancamento.categoria.codigo" #categoria="ngModel" required>
+          <mat-option *ngFor="let c of categorias" [value]="c.codigo">
+            {{ c.nome }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
@@ -88,7 +88,7 @@
 
       <mat-form-field appearance="outline" class="set-cinco-per-width">
         <mat-label>Pessoa</mat-label>
-        <mat-select name="pessoa" ngModel #pessoa="ngModel" required>
+        <mat-select name="pessoa" [(ngModel)]="lancamento.pessoa.codigo" #pessoa="ngModel" required>
           <mat-option *ngFor="let p of pessoas" [value]="p.codigo">
             {{ p.nome }}
           </mat-option>
@@ -103,7 +103,7 @@
 
     <mat-form-field appearance="outline" class="cem-per-width">
       <mat-label>Observação</mat-label>
-      <textarea matInput name="observacoes"
+      <textarea [(ngModel)]="lancamento.observacao" matInput name="observacoes"
             cdkTextareaAutosize
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="3"
@@ -111,8 +111,6 @@
 </textarea>
 
     </mat-form-field>
-
-
 
     <div class="btn">
       <button [disabled]="lanCadastroForm.invalid" mat-raised-button color="primary" (click)="salvar(lanCadastroForm)">Salvar</button>
