@@ -27,6 +27,22 @@ export class LancamentoGridComponent implements AfterViewInit{
     this.dataSource!.paginator = this.paginator;
   }
 
+  excluir(codigo: number) {
+    console.log(codigo)
+    this.lancamentoService.excluir(codigo).subscribe({
+      next: (res)  => {
+        //this.sharedService.mensagemSucesso("Lançamento excluído com sucesso!");
+        this.pesquisa();
+      },
+      error: (error) => {
+        //this.sharedService.mensagemErro("Erro ao excluir lançamento!");
+        console.log(error);
+      }
+    });
+  }
+
+
+
   private pesquisa(){
     this.lancamentoService.pesquisar(this.filtro).subscribe({
       next: (res)  => {
