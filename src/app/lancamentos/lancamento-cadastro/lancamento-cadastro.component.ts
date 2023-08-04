@@ -5,6 +5,7 @@ import { LancamentoCompleto } from 'src/app/shared/model/lancamento.model';
 import { LancamentoService } from '../lancamento.service';
 import { SharedService } from 'src/app/shared/shared.service';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 export interface Pessoa {
@@ -40,14 +41,47 @@ export class LancamentoCadastroComponent implements OnInit {
   constructor(
     private lancamentoService: LancamentoService,
     private sharedService: SharedService,
-    private pessoaService: PessoaService
-
+    private pessoaService: PessoaService,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
+    const codigoLancamento = this.route.snapshot.params['codigo'];
+    if (codigoLancamento) {
+      this.carregarLancamento(codigoLancamento);
+    }
     this.listarCategorias();
     this.listarPessoas();
   }
+
+  carregarLancamento(codigo: number) {
+    this.lancamentoService.pesquisarPorCodigo(codigo).subscribe({
+      next: (res)  => {
+        this.lancamento = res;
+        console.log(res);
+        console.log(this.lancamento);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+  atualizarLancamento(form: NgForm) {
+    this.lancamentoService.atualziar(this.lancamento).subscribe({
+      next: (res)  => {
+        this.lancamento = res;
+        this.sharedService.mensagemSucesso("Lançamento atualzado com sucesso!");
+        console.log(res);
+      },
+      error: (error) => {
+        this.sharedService.mensagemErro(`Erro: ${error.error.erros[0]}`);
+        console.log(error);
+      }
+    });
+  }
+
+
 
   salvarLancamento(form: NgForm) {
     this.lancamentoService.salvar(this.lancamento).subscribe({
@@ -89,9 +123,32 @@ export class LancamentoCadastroComponent implements OnInit {
   });
   }
 
-  public salvar(form: NgForm) {
-    this.salvarLancamento(form);
-    console.log(form.value);
+  salvar(form: NgForm) {
+    if (this.lancamento.codigo) {
+      this.atualizarLancamento(form);
+    } else {
+      this.salvarLancamento(form);
+    }
+    this.resetForm(form);
+  }
+
+  private resetLancamento(){
+    this.lancamento = {
+      descricao: "",
+      dataVencimento: new Date(),
+      dataPagamento: null,
+      valor: 0,
+      observacao: "",
+      tipo: 'RECEITA',
+      categoria: {nome: ""},
+      pessoa: {nome: ""}
+    };
+  }
+
+
+  resetForm(form: NgForm){
+    this.resetLancamento();
+    form.resetForm();
   }
 
 }
