@@ -72,3 +72,14 @@ table {
   max-width: 1170px;
   width: 90%;
 }
+
+.success-snackbar {
+  --mdc-snackbar-container-color: green;
+  --mat-mdc-snack-bar-button-color: white;
+}
+
+.error-snackbar {
+  --mdc-snackbar-container-color: rgba(129, 0, 0, 0.991);
+  --mat-mdc-snack-bar-button-color: white;
+}
+
