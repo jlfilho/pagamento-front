@@ -22,7 +22,7 @@ import { CoreModule } from './core/core.module';
     PessoasModule,
     CoreModule
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'pt-BR'} ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

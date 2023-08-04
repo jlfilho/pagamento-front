@@ -1,6 +1,9 @@
 import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
 
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import { LancamentoFiltro } from 'src/app/shared/model/lancamentoFiltro.model';
+import { ResponsePageable } from 'src/app/shared/model/responsePageable.model';
+import { LancamentoService } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamento-grid',
@@ -8,15 +11,39 @@ import {MatPaginator} from '@angular/material/paginator';
   styleUrls: ['./lancamento-grid.component.css']
 })
 export class LancamentoGridComponent implements AfterViewInit{
-  displayedColumns: string[] = ['pessoa', 'descricao', 'vencimento', 'pagamento', 'valor', 'acao'];
+  displayedColumns: string[] = ['pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'acao'];
   @Input() dataSource: any;
+  @Input() responsePageable!: ResponsePageable;
+  @Input() filtro!: LancamentoFiltro;
+
+  constructor(
+    private lancamentoService: LancamentoService
+  ){}
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-
   ngAfterViewInit(): void {
     this.dataSource!.paginator = this.paginator;
+  }
+
+  private pesquisa(){
+    this.lancamentoService.pesquisar(this.filtro).subscribe({
+      next: (res)  => {
+        this.dataSource.data = res.content;
+        this.responsePageable = res;
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+  });
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.filtro.pagina=event.pageIndex;
+    this.filtro.itensPorPagina=event.pageSize;
+    this.pesquisa();
   }
 
 }
