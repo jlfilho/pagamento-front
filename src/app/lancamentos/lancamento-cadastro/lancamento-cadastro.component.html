@@ -20,7 +20,7 @@
     <div class="flex-filds-container">
       <mat-form-field appearance="outline" class="cinquenta-per-width">
         <mat-label>Vencimento</mat-label>
-        <input name="vencimento" [(ngModel)]="lancamento.dataVencimento" #vencimento="ngModel" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker" required>
+        <input name="dataVencimento" [(ngModel)]="lancamento.dataVencimento" #vencimento="ngModel" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker" required>
         <mat-datepicker-toggle matIconSuffix [for]="picker">
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -35,7 +35,7 @@
 
       <mat-form-field appearance="outline" class="cinquenta-per-width">
         <mat-label>Pagamento</mat-label>
-        <input [(ngModel)]="lancamento.dataPagamento" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker">
+        <input name="dataPagamento" [(ngModel)]="lancamento.dataPagamento" matInput placeholder="dd/MM/yyyy" [matDatepicker]="picker">
         <mat-datepicker-toggle matIconSuffix [for]="picker">
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>

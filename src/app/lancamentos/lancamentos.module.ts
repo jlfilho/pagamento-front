@@ -22,6 +22,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LancamentoService } from './lancamento.service';
+import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -33,21 +40,29 @@ import { LancamentoService } from './lancamento.service';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
-    MatButtonModule,
+    MatToolbarModule,
     MatIconModule,
     MatInputModule,
-    MatDatepickerModule,
+    MatButtonModule,
     MatNativeDateModule,
-    MatSelectModule,
+    MatDatepickerModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule,
-    MatButtonToggleModule,
-    HttpClientModule,
     MatSortModule,
+    MatTooltipModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule,
 
-    CurrencyMaskModule
+    SharedModule,
+
+    CurrencyMaskModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule
 
   ],
   exports: [
